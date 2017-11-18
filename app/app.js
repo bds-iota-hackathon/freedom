@@ -6,10 +6,10 @@ angular.module('MyApp', ['ngRoute'])
       .when('/', {
         templateUrl: 'partials/home.html'
       })
-      .when('/contact', {
-        templateUrl: 'partials/contact.html',
-        controller: 'ContactCtrl'
-      })
+        .when('/transactionrequest', {
+            templateUrl: 'partials/transactionrequest.html',
+            controller: 'TransactionCtrl'
+        })
       .when('/login', {
         templateUrl: 'partials/login.html',
         controller: 'LoginCtrl',

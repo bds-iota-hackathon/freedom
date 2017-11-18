@@ -1,11 +1,7 @@
 angular.module('MyApp')
   .controller('TransactionCtrl', function($scope, TransactionRequest) {
 
-      $scope.foo = 'bar';
-
-
-
-
+      //$scope.foo = 'bar';
 
       $scope.sendTransactionRequestForm = function() {
       TransactionRequest.send($scope.transactionRequest)

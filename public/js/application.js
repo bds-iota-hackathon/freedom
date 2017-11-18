@@ -8,10 +8,10 @@ angular.module('MyApp', ['ngRoute'])
       .when('/', {
         templateUrl: 'partials/home.html'
       })
-      .when('/contact', {
-        templateUrl: 'partials/contact.html',
-        controller: 'ContactCtrl'
-      })
+        .when('/transactionrequest', {
+            templateUrl: 'partials/transactionrequest.html',
+            controller: 'TransactionCtrl'
+        })
       .when('/login', {
         templateUrl: 'partials/login.html',
         controller: 'LoginCtrl',
@@ -61,7 +61,7 @@ angular.module('MyApp', ['ngRoute'])
   }]);
 
 angular.module('MyApp')
-  .controller('ContactCtrl', ["$scope", "TransactionRequest", function($scope, TransactionRequest) {
+  .controller('TransactionCtrl', ["$scope", "TransactionRequest", function($scope, TransactionRequest) {
 
       $scope.foo = 'bar';
 
@@ -69,7 +69,7 @@ angular.module('MyApp')
 
 
 
-      $scope.sendContactForm = function() {
+      $scope.sendTransactionRequestForm = function() {
       TransactionRequest.send($scope.transactionRequest)
         .then(function(response) {
           $scope.messages = {
@@ -284,6 +284,26 @@ angular.module('MyApp')
         });
     };
   }]);
+angular.module('MyApp')
+  .controller('TransactionCtrl', ["$scope", "TransactionRequest", function($scope, TransactionRequest) {
+
+      //$scope.foo = 'bar';
+
+      $scope.sendTransactionRequestForm = function() {
+      TransactionRequest.send($scope.transactionRequest)
+        .then(function(response) {
+          $scope.messages = {
+            success: [response.data]
+          };
+        })
+        .catch(function(response) {
+          $scope.messages = {
+            error: Array.isArray(response.data) ? response.data : [response.data]
+          };
+        });
+    };
+  }]);
+
 angular.module('MyApp')
   .factory('Account', ["$http", function($http) {
     return {
