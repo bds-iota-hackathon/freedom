@@ -1,15 +1,15 @@
 angular.module('MyApp')
-  .controller('HeaderCtrl', function($scope, $location, $window, $auth) {
+  .controller('HeaderCtrl', function($scope, $location, $window) {
     $scope.isActive = function (viewLocation) {
       return viewLocation === $location.path();
     };
     
     $scope.isAuthenticated = function() {
-      return $auth.isAuthenticated();
+      return true;
     };
     
     $scope.logout = function() {
-      $auth.logout();
+      //$auth.logout();
       delete $window.localStorage.user;
       $location.path('/');
     };

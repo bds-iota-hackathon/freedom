@@ -1,5 +1,5 @@
 angular.module('MyApp', ['ngRoute'])
-  .config(function($routeProvider, $locationProvider, $authProvider) {
+  .config(function($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
 
     $routeProvider
