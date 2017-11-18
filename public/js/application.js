@@ -12,6 +12,10 @@ angular.module('MyApp', ['ngRoute'])
             templateUrl: 'partials/freedompassapplication.html',
             controller: 'FreedomPassApplicationCtrl'
         })
+        .when('/list', {
+            templateUrl: 'partials/list.html',
+            controller: 'ListCtrl'
+        })
       .when('/login', {
         templateUrl: 'partials/login.html',
         controller: 'LoginCtrl',
@@ -137,6 +141,13 @@ angular.module('MyApp')
     };
   }]);
 
+angular.module('MyApp')
+    .controller('ListCtrl', ["$scope", function($scope) {
+
+        $scope.values = ['1', '2', 'z'];
+
+
+    }]);
 angular.module('MyApp')
   .controller('LoginCtrl', ["$scope", "$rootScope", "$location", "$window", "$auth", function($scope, $rootScope, $location, $window, $auth) {
     $scope.login = function() {

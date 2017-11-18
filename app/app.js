@@ -10,6 +10,10 @@ angular.module('MyApp', ['ngRoute'])
             templateUrl: 'partials/freedompassapplication.html',
             controller: 'FreedomPassApplicationCtrl'
         })
+        .when('/list', {
+            templateUrl: 'partials/list.html',
+            controller: 'ListCtrl'
+        })
       .when('/login', {
         templateUrl: 'partials/login.html',
         controller: 'LoginCtrl',
