@@ -15,6 +15,8 @@ dotenv.load();
 // var contactController = require('./controllers/contact');
 var freedomPassApplicationController = require('./controllers/freedomPassApplication');
 
+var listController = require('./controllers/list');
+
 var app = express();
 
 
@@ -38,6 +40,9 @@ app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, 'app', 'index.html'));
 });
 
+app.get('/applist', listController.listPost);
+
+
 app.get('*', function(req, res) {
   res.redirect('/#' + req.originalUrl);
 });
@@ -49,6 +54,7 @@ if (app.get('env') === 'production') {
     res.sendStatus(err.status || 500);
   });
 }
+
 
 app.post('/freedomPassApplication', freedomPassApplicationController.freedomPassApplicationPost);
 

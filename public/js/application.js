@@ -142,10 +142,13 @@ angular.module('MyApp')
   }]);
 
 angular.module('MyApp')
-    .controller('ListCtrl', ["$scope", function($scope) {
+    .controller('ListCtrl', ["$scope", "$http", function($scope, $http) {
 
-        $scope.values = ['1', '2', 'z'];
 
+        $http.get('/applist').then(function(response){
+
+            $scope.values = response.data;
+        });
 
     }]);
 angular.module('MyApp')

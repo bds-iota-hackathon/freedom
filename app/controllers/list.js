@@ -1,7 +1,10 @@
 angular.module('MyApp')
-    .controller('ListCtrl', function($scope) {
+    .controller('ListCtrl', function($scope, $http) {
 
-        $scope.values = ['1', '2', 'z'];
 
+        $http.get('/applist').then(function(response){
+
+            $scope.values = response.data;
+        });
 
     });
