@@ -8,9 +8,9 @@ angular.module('MyApp', ['ngRoute'])
       .when('/', {
         templateUrl: 'partials/home.html'
       })
-        .when('/transactionrequest', {
-            templateUrl: 'partials/transactionrequest.html',
-            controller: 'TransactionCtrl'
+        .when('/freedompassapplication', {
+            templateUrl: 'partials/freedompassapplication.html',
+            controller: 'FreedomPassApplicationCtrl'
         })
       .when('/login', {
         templateUrl: 'partials/login.html',
@@ -101,6 +101,25 @@ angular.module('MyApp')
     };
   }]);
 
+angular.module('MyApp')
+    .controller('FreedomPassApplicationCtrl', ["$scope", "FreedomPassApplication", function($scope, FreedomPassApplication) {
+
+        //$scope.foo = 'bar';
+
+        $scope.sendFreedomPassApplication = function() {
+            FreedomPassApplication.send($scope.freedomPassApplication)
+                .then(function(response) {
+                    $scope.messages = {
+                        success: [response.data]
+                    };
+                })
+                .catch(function(response) {
+                    $scope.messages = {
+                        error: Array.isArray(response.data) ? response.data : [response.data]
+                    };
+                });
+        };
+    }]);
 angular.module('MyApp')
   .controller('HeaderCtrl', ["$scope", "$location", "$window", function($scope, $location, $window) {
     $scope.isActive = function (viewLocation) {
@@ -329,6 +348,14 @@ angular.module('MyApp')
     return {
       send: function(data) {
         return $http.post('/contact', data);
+      }
+    };
+  }]);
+angular.module('MyApp')
+  .factory('FreedomPassApplication', ["$http", function($http) {
+    return {
+      send: function(data) {
+        return $http.post('/freedompassapplication', data);
       }
     };
   }]);

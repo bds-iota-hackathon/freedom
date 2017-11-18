@@ -6,9 +6,9 @@ angular.module('MyApp', ['ngRoute'])
       .when('/', {
         templateUrl: 'partials/home.html'
       })
-        .when('/transactionrequest', {
-            templateUrl: 'partials/transactionrequest.html',
-            controller: 'TransactionCtrl'
+        .when('/freedompassapplication', {
+            templateUrl: 'partials/freedompassapplication.html',
+            controller: 'FreedomPassApplicationCtrl'
         })
       .when('/login', {
         templateUrl: 'partials/login.html',

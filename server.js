@@ -13,7 +13,7 @@ dotenv.load();
 
 // Controllers
 // var contactController = require('./controllers/contact');
-var transactionRequestController = require('./controllers/transactionRequest');
+var freedomPassApplicationController = require('./controllers/freedomPassApplication');
 
 var app = express();
 
@@ -50,7 +50,7 @@ if (app.get('env') === 'production') {
   });
 }
 
-app.post('/transactionrequest', transactionRequestController.transactionRequestPost);
+app.post('/freedomPassApplication', freedomPassApplicationController.freedomPassApplicationPost);
 
 app.listen(app.get('port'), function() {
   console.log('Express server listening on port ' + app.get('port'));
