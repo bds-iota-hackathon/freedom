@@ -1,7 +1,14 @@
 angular.module('MyApp')
-  .controller('ContactCtrl', function($scope, Contact) {
-    $scope.sendContactForm = function() {
-      Contact.send($scope.contact)
+  .controller('ContactCtrl', function($scope, TransactionRequest) {
+
+      $scope.foo = 'bar';
+
+
+
+
+
+      $scope.sendContactForm = function() {
+      TransactionRequest.send($scope.transactionRequest)
         .then(function(response) {
           $scope.messages = {
             success: [response.data]

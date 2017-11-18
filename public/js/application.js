@@ -61,9 +61,16 @@ angular.module('MyApp', ['ngRoute'])
   }]);
 
 angular.module('MyApp')
-  .controller('ContactCtrl', ["$scope", "Contact", function($scope, Contact) {
-    $scope.sendContactForm = function() {
-      Contact.send($scope.contact)
+  .controller('ContactCtrl', ["$scope", "TransactionRequest", function($scope, TransactionRequest) {
+
+      $scope.foo = 'bar';
+
+
+
+
+
+      $scope.sendContactForm = function() {
+      TransactionRequest.send($scope.transactionRequest)
         .then(function(response) {
           $scope.messages = {
             success: [response.data]
@@ -302,6 +309,14 @@ angular.module('MyApp')
     return {
       send: function(data) {
         return $http.post('/contact', data);
+      }
+    };
+  }]);
+angular.module('MyApp')
+  .factory('TransactionRequest', ["$http", function($http) {
+    return {
+      send: function(data) {
+        return $http.post('/transactionrequest', data);
       }
     };
   }]);

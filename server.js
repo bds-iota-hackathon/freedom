@@ -12,7 +12,8 @@ var mongoose = require('mongoose');
 dotenv.load();
 
 // Controllers
-var contactController = require('./controllers/contact');
+// var contactController = require('./controllers/contact');
+var transactionRequestController = require('./controllers/transactionRequest');
 
 var app = express();
 
@@ -31,7 +32,7 @@ app.use(expressValidator());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.post('/contact', contactController.contactPost);
+// app.post('/contact', contactController.contactPost);
 
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, 'app', 'index.html'));
@@ -48,6 +49,8 @@ if (app.get('env') === 'production') {
     res.sendStatus(err.status || 500);
   });
 }
+
+app.post('/transactionrequest', transactionRequestController.transactionRequestPost);
 
 app.listen(app.get('port'), function() {
   console.log('Express server listening on port ' + app.get('port'));
