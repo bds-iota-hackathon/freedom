@@ -62,12 +62,14 @@ exports.doctorsPost = function(req, res) {
     if (err) {
       next(err);
     } else {
+        result.forEach(function (a) {
+            a.number = a.count.length;
+        })
 
-      result.sort(function (a,b) {
-          return a.count.length < b.count.length
-      })
-      console.log(result);
-      res.send(result);
+        result.sort(function (a,b) {
+        return b.number - a.number;
+        });
+        res.send(result);
     }
    });
 
