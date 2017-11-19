@@ -44,22 +44,24 @@ exports.freedomPassApplicationPost = function (req, res) {
     //     NationalInsuranceNumber: req.body.nin
     // });
 
+    let numberOfApplications
 
     api.commitDoctorPatientTransaction
     (req.body.did, req.body.nin).then((result) => {
         console.log(result);
-        return result
+        return(result);
     }).then(() => {
         return api.listTransactions(req.body.did)
     }).then((transactionsArray) => {
         console.log(transactionsArray.length)
+        numberOfApplications = transactionsArray.length
         return new model.Doctors({
             DoctorID: req.body.did,
             CertificatesIssued: transactionsArray.length
         });
     }).then((doctor) => {
         console.log(doctor)
-        return doctor.save(function (err) {
+        return doctor.update({upsert:true},function (err) {
             if (err) {
                 console.log(err);
             } else {
@@ -72,7 +74,7 @@ exports.freedomPassApplicationPost = function (req, res) {
             NationalInsuranceNumber: req.body.nin,
             DoctorsPhoneNumber: req.body.pnod,
             DoctorsPostalCode: req.body.pcod,
-            ApplicantsPostalCode: req.body.apc
+            ApplicantsPostalCode: req.body.apc,
         });
     }).then((freedomPassApplication) => {
         freedomPassApplication.save(function (err) {
@@ -83,7 +85,11 @@ exports.freedomPassApplicationPost = function (req, res) {
             }
         });
 
-        res.send({msg: 'Thank you! Your Freedom Pass Application has been submitted. ' + req.body.did + ' ' + req.body.nin});
+        let alarm = ''; 
+        if (numberOfApplications > 10) {
+            alarm = '<span style="background-color:red; color:white"> Alarm raised! </span>';
+        }
+        res.send({msg: ('Thank you! Your Freedom Pass Application for NiN ' + req.body.nin+' has been submitted. Doctor ' + req.body.did + ' has issued ' + numberOfApplications + ' certificates already.' + alarm)});
 
         console.log('Freedom Pass Application has been submitted');
     });
