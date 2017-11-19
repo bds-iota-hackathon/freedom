@@ -39,8 +39,11 @@ exports.freedomPassApplicationPost = function(req, res) {
 
     var freedomPassApplication = new model.FreedomPassApplication({
         DoctorID : req.body.did,
-        NationalInsuranceNumber: req.body.nin
-
+        NationalInsuranceNumber: req.body.nin,
+        DoctorsPhoneNumber: req.body.pnod,
+        DoctorsPostalCode: req.body.pcod,
+        ApplicantsPostalCode: req.body.apc,
+        CertificatesIssued: String
     });
 
     freedomPassApplication.save(function (err) {
