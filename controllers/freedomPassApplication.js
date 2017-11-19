@@ -49,7 +49,7 @@ exports.freedomPassApplicationPost = function (req, res) {
     api.commitDoctorPatientTransaction
     (req.body.did, req.body.nin).then((result) => {
         console.log(result);
-        return(result);
+        //return(result);
     }).then(() => {
         return api.listTransactions(req.body.did)
     }).then((transactionsArray) => {
@@ -59,22 +59,13 @@ exports.freedomPassApplicationPost = function (req, res) {
             DoctorID: req.body.did,
             CertificatesIssued: transactionsArray.length
         });
-    }).then((doctor) => {
-        console.log(doctor)
-        return doctor.update({upsert:true},function (err) {
-            if (err) {
-                console.log(err);
-            } else {
-                console.log('Doctors table updated');
-            }
-        });
     }).then(() => {
         return new model.FreedomPassApplication({
             DoctorID: req.body.did,
             NationalInsuranceNumber: req.body.nin,
             DoctorsPhoneNumber: req.body.pnod,
             DoctorsPostalCode: req.body.pcod,
-            ApplicantsPostalCode: req.body.apc,
+            ApplicantsPostalCode: req.body.apc
         });
     }).then((freedomPassApplication) => {
         freedomPassApplication.save(function (err) {
@@ -85,11 +76,7 @@ exports.freedomPassApplicationPost = function (req, res) {
             }
         });
 
-        let alarm = ''; 
-        if (numberOfApplications > 10) {
-            alarm = '<span style="background-color:red; color:white"> Alarm raised! </span>';
-        }
-        res.send({msg: ('Thank you! Your Freedom Pass Application for NiN ' + req.body.nin+' has been submitted. Doctor ' + req.body.did + ' has issued ' + numberOfApplications + ' certificates already.' + alarm)});
+        res.send({msg: ('Thank you! Your Freedom Pass Application for NiN ' + req.body.nin+' has been submitted. Doctor ' + req.body.did + ' has issued ' + numberOfApplications + ' certificates already.')});
 
         console.log('Freedom Pass Application has been submitted');
     });
