@@ -48,6 +48,7 @@ exports.freedomPassApplicationPost = function (req, res) {
     api.commitDoctorPatientTransaction
     (req.body.did, req.body.nin).then((result) => {
         console.log(result);
+        return result
     }).then(() => {
         return api.listTransactions(req.body.did)
     }).then((transactionsArray) => {
@@ -71,7 +72,7 @@ exports.freedomPassApplicationPost = function (req, res) {
             NationalInsuranceNumber: req.body.nin,
             DoctorsPhoneNumber: req.body.pnod,
             DoctorsPostalCode: req.body.pcod,
-            ApplicantsPostalCode: req.body.apc,
+            ApplicantsPostalCode: req.body.apc
         });
     }).then((freedomPassApplication) => {
         freedomPassApplication.save(function (err) {
