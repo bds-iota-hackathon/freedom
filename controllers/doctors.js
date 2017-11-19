@@ -50,6 +50,23 @@ exports.doctorsPost = function(req, res) {
 //         }
 //     });
 
+
+//     model.Doctors.aggregate([
+//     {
+//       $group: {
+//         _id: '$DoctorID',  //$region is the column name in collection
+//         count: {$addToSet: '$NationalInsuranceNumber'}
+//       }
+//     }
+//    ], function (err, result) {
+//     if (err) {
+//       next(err);
+//     } else {
+//       console.log(result);
+//       res.send(result);
+//     }
+//    });
+
     model.Doctors.find(function (err, values) {
         if (err) return console.error(err);
         console.log(values);
