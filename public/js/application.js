@@ -89,6 +89,16 @@ angular.module('MyApp')
   }]);
 
 angular.module('MyApp')
+    .controller('DoctorsCtrl', ["$scope", "$http", function($scope, $http) {
+
+
+        $http.get('/applist').then(function(response){
+
+            $scope.values = response.data;
+        });
+
+    }]);
+angular.module('MyApp')
   .controller('ForgotCtrl', ["$scope", "Account", function($scope, Account) {
     $scope.forgotPassword = function() {
       Account.forgotPassword($scope.user)
