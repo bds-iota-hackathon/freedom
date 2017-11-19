@@ -21,8 +21,8 @@
                 </tr>
                 <tr ng-repeat="value in values">
                     <td>{{value._id}}</td>
-                    <td ng-class="{alarm: value.count.length > 0}">
-                         {{value.count.length}}<span ng-show="value.count.length>0"> - Fraud Alert</span></td>
+                    <td ng-class="{alarm: value.count.length > 10}">
+                         {{value.count.length}}<span ng-show="(value.count.length > 10)"> - Fraud Alert</span></td>
                 </tr>
             </table>
         </div>

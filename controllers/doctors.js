@@ -62,6 +62,10 @@ exports.doctorsPost = function(req, res) {
     if (err) {
       next(err);
     } else {
+
+      result.sort(function (a,b) {
+          return a.count.length < b.count.length
+      })
       console.log(result);
       res.send(result);
     }
