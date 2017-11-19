@@ -2,7 +2,11 @@ var mongoose = require('mongoose');
 
 var FreedomPassApplication = mongoose.model('FreedomPassApplication', {
     DoctorID: String,
-    NationalInsuranceNumber: String
+    NationalInsuranceNumber: String,
+    DoctorsPhoneNumber: String,
+    DoctorsPostalCode: String,
+    ApplicantsPostalCode: String,
+    CertificatesIssued: String
 });
 
 // var kitty = new Cat({ name: req.body.did });

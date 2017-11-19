@@ -4280,7 +4280,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   padding: 15px 15px;
   font-size: 18px;
   line-height: 20px;
-  color: #fae1df;
+  color: #e4c3ad;
 }
 .navbar-brand:hover{
   color: #9ea3b0;
@@ -4987,7 +4987,7 @@ a.badge:focus {
 .container-fluid .jumbotron {
   padding-right: 15px;
   padding-left: 15px;
-  border-radius: 6px;
+  border-radius: 0px;
 }
 .jumbotron .container {
   max-width: 100%;
@@ -5458,20 +5458,23 @@ button.list-group-item-danger.active:focus {
 }
 .panel {
   margin-bottom: 20px;
-  background-color: #fff;
+  background-color: #fae1df;
   border: 1px solid transparent;
-  border-radius: 4px;
+  border-radius: 0px;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
           box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 }
 .panel-body {
-  padding: 15px;
+  padding: 35px;
+  border-top: 40px solid transparent;
+  background-color: #fae1df;
 }
 .panel-heading {
-  padding: 10px 15px;
-  border-bottom: 1px solid transparent;
+  padding: 10px 10px;
+  border-bottom: 10px solid transparent;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
+  color: #fff;
 }
 .panel-heading > .dropdown .dropdown-toggle {
   color: inherit;
