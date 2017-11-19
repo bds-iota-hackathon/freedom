@@ -59,7 +59,7 @@ exports.freedomPassApplicationPost = function (req, res) {
         });
     }).then((doctor) => {
         console.log(doctor)
-        return doctor.update({upsert:true},function (err) {
+        return doctor.save(function (err) {
             if (err) {
                 console.log(err);
             } else {
