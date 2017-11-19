@@ -42,7 +42,6 @@ async function commitDoctorPatientTransaction(doctorId, patientId) {
         if(wasDoctorTransactionCreated){
             wasPatientTransactionCreated = await createTransaction(patientsSeed)
         }
-        await listTransactions(doctorId)
         return wasPatientTransactionCreated
     }
     catch (e) {
@@ -56,11 +55,7 @@ async function listTransactions(entityId) {
     try {
         let entitySeed = createSeedFromPhrase(entityId)
         let resultsArray = await listTransacionsForSeed(entitySeed)
-        for (let i = 0; i < resultsArray.length; i++) {
-            if (resultsArray[i][0].persistence) {
-                console.dir(resultsArray[i][0])
-            }
-        }
+        return resultsArray
     }
     catch (e) {
         console.log(e)
@@ -69,8 +64,8 @@ async function listTransactions(entityId) {
 }
 
 
-exports.commitDoctorPatientTransaction
-    = commitDoctorPatientTransaction
+module.exports = {commitDoctorPatientTransaction:commitDoctorPatientTransaction,
+    listTransactions:listTransactions}
 
 async function createTransaction(seedOfReceiver) {
     try {

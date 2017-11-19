@@ -38,13 +38,7 @@ exports.freedomPassApplicationPost = function (req, res) {
 //         }
 //     });
 
-    var freedomPassApplication = new model.FreedomPassApplication({
-        DoctorID : req.body.did,
-        NationalInsuranceNumber: req.body.nin,
-        DoctorsPhoneNumber: req.body.pnod,
-        DoctorsPostalCode: req.body.pcod,
-        ApplicantsPostalCode: req.body.apc,
-    });
+
     // var freedomPassApplication = new model.FreedomPassApplication({
     //     DoctorID: req.body.did,
     //     NationalInsuranceNumber: req.body.nin
@@ -54,20 +48,38 @@ exports.freedomPassApplicationPost = function (req, res) {
     api.commitDoctorPatientTransaction
     (req.body.did, req.body.nin).then((result) => {
         console.log(result);
+        return result
+    }).then(() => {
+        return api.listTransactions(req.body.did)
+    }).then((transactionsArray) => {
+        console.log(transactionsArray.length)
+        return new model.Doctors({
+            DoctorID: req.body.did,
+            CertificatesIssued: transactionsArray.length
+        });
+    }).then((doctor) => {
+        console.log(doctor)
+        return doctor.save(function (err) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('Doctors table updated');
+            }
+        });
     }).then(() => {
         return new model.FreedomPassApplication({
             DoctorID: req.body.did,
             NationalInsuranceNumber: req.body.nin,
             DoctorsPhoneNumber: req.body.pnod,
             DoctorsPostalCode: req.body.pcod,
-            ApplicantsPostalCode: req.body.apc,
+            ApplicantsPostalCode: req.body.apc
         });
     }).then((freedomPassApplication) => {
         freedomPassApplication.save(function (err) {
             if (err) {
                 console.log(err);
             } else {
-                console.log('Freeeeeee');
+                console.log('Transactions List Updated');
             }
         });
 

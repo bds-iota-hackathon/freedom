@@ -1,51 +1,74 @@
 <div class="container">
     <div class="panel">
-        <div class="panel-heading">
-            <h3 class="panel-title">Enter application data</h3>
+      <div class="panel-heading">
+        <h3 class="panel-title">Enter application data</h3>
+      </div>
+      <div class="panel-body">
+        <div ng-if="messages.error" role="alert" class="alert alert-danger">
+          <div ng-repeat="error in messages.error">{{error.msg}}</div>
         </div>
-        <div class="panel-body">
-
-            <div ng-show="loading">
-                Loading ...
-                <img src="http://www.ajaxload.info/cache/FF/FF/FF/00/00/00/1-0.gif"/>
-            </div>
-
-            <div ng-hide="loading">
-                <div ng-if="messages.error" role="alert" class="alert alert-danger">
-                    <div ng-repeat="error in messages.error">{{error.msg}}</div>
-                </div>
-                <div ng-if="messages.success" role="alert" class="alert alert-success">
-                    <div ng-repeat="success in messages.success">{{success.msg}}</div>
-                </div>
-                <form ng-submit="sendFreedomPassApplication()" class="form-horizontal">
-                    <div class="form-group">
-                        <label for="did" class="col-sm-2">Doctor ID</label>
-                        <div class="col-sm-8">
-                            <input type="text" name="Doctor ID" id="did" class="form-control"
-                                   ng-model="freedomPassApplication.did" autofocus>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="nin" class="col-sm-2">National Insurance Number for Applicant</label>
-                        <div class="col-sm-8">
-                            <input type="text" name="National Insurance Number" id="nin" class="form-control"
-                                   ng-model="freedomPassApplication.nin">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="message" class="col-sm-2">Body</label>
-                        <div class="col-sm-8">
-                            <textarea name="message" id="message" rows="7" class="form-control"
-                                      ng-model="freedomPassApplication.message"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-8">
-                            <button type="submit" class="btn btn-success">Send</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
+        <div ng-if="messages.success" role="alert" class="alert alert-success">
+          <div ng-repeat="success in messages.success">{{success.msg}}</div>
         </div>
+        <form ng-submit="sendFreedomPassApplication()" class="form-horizontal">
+          <div class="form-group">
+            <label for="did" class="col-sm-2">Doctor ID</label>
+            <div class="col-sm-8">
+              <input type="text" name="Doctor ID" id="did" class="form-control" ng-model="freedomPassApplication.did" autofocus>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="nin" class="col-sm-2">National Insurance Number for Applicant</label>
+            <div class="col-sm-8">
+              <input type="text" name="National Insurance Number" id="nin" class="form-control" ng-model="freedomPassApplication.nin">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="pnod" class="col-sm-2">Phone number of doctor</label>
+            <div class="col-sm-8">
+              <input type="text" name="Phone number of doctor" id="pnod" class="form-control" ng-model="freedomPassApplication.pnod">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="pcod" class="col-sm-2">Postal code of doctor</label>
+            <div class="col-sm-8">
+              <input type="text" name="Postal code of doctor" id="pcod" class="form-control" ng-model="freedomPassApplication.pcod">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="apc" class="col-sm-2">Postal code of applicant</label>
+            <div class="col-sm-8">
+              <input type="text" name="Postal code of applicant" id="apc" class="form-control" ng-model="freedomPassApplication.apc">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="ci" class="col-sm-2">Certificates issued</label>
+            <div class="col-sm-8">
+              <input type="text" name="Certificates issued" id="ci" class="form-control" ng-model="freedomPassApplication.ci">
+            </div>
+          </div>
+          <!--<div class="form-group">-->
+            <!--<label for="message" class="col-sm-2">Body</label>-->
+            <!--<div class="col-sm-8">-->
+              <!--<textarea name="message" id="message" rows="7" class="form-control" ng-model="freedomPassApplication.message"></textarea>-->
+            <!--</div>-->
+          <!--</div>-->
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-8">
+              <button type="submit" class="btn btn-success">Send</button>
+            </div>
+          </div>
+        </form>
+        <div ng-show="loading">
+          Your application is being submitted to the blockchain...
+          <img src="/ajax-loader.gif"/>
+        </div>
+        <!-- div ng-show="creatingDoctor">
+            Creating the doctor account on the blockchain... (1/2)
+        </div>
+        <div ng-show="creatingCertificate">
+            Creating certificate transaction... (2/2)
+        </div -->
     </div>
-</div>
+    </div>
+  </div>
