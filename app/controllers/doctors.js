@@ -3,7 +3,6 @@ angular.module('MyApp')
 
 
         $http.get('/doctors').then(function(response){
-
             $scope.values = response.data;
         });
 
