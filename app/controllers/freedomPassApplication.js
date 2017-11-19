@@ -6,8 +6,6 @@ angular.module('MyApp')
         $scope.sendFreedomPassApplication = function() {
 
             $scope.loading = true;
-            $scope.creatingDoctor = true;
-            $scope.creatingCertificate = true;
 
             FreedomPassApplication.send($scope.freedomPassApplication)
                 .then(function(response) {
@@ -15,16 +13,12 @@ angular.module('MyApp')
                         success: [response.data]
                     };
                     $scope.loading = false;
-                    $scope.creatingDoctor = false;
-                    $scope.creatingCertificate = false;
                 })
                 .catch(function(response) {
                     $scope.messages = {
                         error: Array.isArray(response.data) ? response.data : [response.data]
                     };
                     $scope.loading = false;
-                    $scope.creatingDoctor = false;
-                    $scope.creatingCertificate = false;
                 });
         };
     });
