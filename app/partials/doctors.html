@@ -1,3 +1,9 @@
+<style>
+    .alarm {
+        background-color: red;
+        color: white;
+    }
+</style>
 <div class="container">
     <div class="panel">
         <div class="panel-heading">
@@ -14,8 +20,9 @@
                     <th>Certificates Issued</th>
                 </tr>
                 <tr ng-repeat="value in values">
-                    <td>{{value.DoctorID}}</td>
-                    <td>{{value.CertificatesIssued}}</td>
+                    <td>{{value._id}}</td>
+                    <td ng-class="{alarm: value.count.length > 0}">
+                         {{value.count.length}}<span ng-show="value.count.length>0"> - Fraud Alert</span></td>
                 </tr>
             </table>
         </div>

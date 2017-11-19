@@ -11,16 +11,16 @@
             <table style="width:100%">
                 <tr>
                     <th>Doctor ID</th>
-                    <th>National Insurance Number</th>
-                    <th>Phone number of doctor</th>
                     <th>Postal code of doctor</th>
+                    <th>Applicant National Insurance Number</th>
+                    <th>Phone number of applicant</th>
                     <th>Postal code of applicant</th>
                 </tr>
                 <tr ng-repeat="value in values">
                     <td>{{value.DoctorID}}</td>
+                    <td>{{value.DoctorsPostalCode}}</td>
                     <td>{{value.NationalInsuranceNumber}}</td>
                     <td>{{value.DoctorsPhoneNumber}}</td>
-                    <td>{{value.DoctorsPostalCode}}</td>
                     <td>{{value.ApplicantsPostalCode}}</td>
                 </tr>
             </table>
