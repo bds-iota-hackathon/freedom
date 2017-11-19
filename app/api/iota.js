@@ -42,7 +42,6 @@ async function commitDoctorPatientTransaction(doctorId, patientId) {
         if(wasDoctorTransactionCreated){
             wasPatientTransactionCreated = await createTransaction(patientsSeed)
         }
-        await listTransactions(doctorId)
         return wasPatientTransactionCreated
     }
     catch (e) {
@@ -69,8 +68,8 @@ async function listTransactions(entityId) {
 }
 
 
-exports.commitDoctorPatientTransaction
-    = commitDoctorPatientTransaction
+module.exports = {commitDoctorPatientTransaction:commitDoctorPatientTransaction,
+    listTransactions:listTransactions}
 
 async function createTransaction(seedOfReceiver) {
     try {
