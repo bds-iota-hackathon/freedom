@@ -26,9 +26,11 @@
     "gulp-plumber": "^1.1.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.5.3",
+    "iota.lib.js": "^0.4.3",
     "mongoose": "^4.4.8",
     "morgan": "^1.7.0",
     "nodemailer": "^2.3.0",
+    "sha3": "^1.2.0",
     "vinyl-buffer": "^1.0.0",
     "yargs": "^4.3.2"
   },
