@@ -14,6 +14,10 @@ angular.module('MyApp', ['ngRoute'])
             templateUrl: 'partials/list.html',
             controller: 'ListCtrl'
         })
+        .when('/doctors', {
+            templateUrl: 'partials/doctors.html',
+            controller: 'DoctorsCtrl'
+        })
       .when('/login', {
         templateUrl: 'partials/login.html',
         controller: 'LoginCtrl',

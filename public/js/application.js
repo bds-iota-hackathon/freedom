@@ -16,6 +16,10 @@ angular.module('MyApp', ['ngRoute'])
             templateUrl: 'partials/list.html',
             controller: 'ListCtrl'
         })
+        .when('/doctors', {
+            templateUrl: 'partials/doctors.html',
+            controller: 'DoctorsCtrl'
+        })
       .when('/login', {
         templateUrl: 'partials/login.html',
         controller: 'LoginCtrl',
@@ -92,7 +96,7 @@ angular.module('MyApp')
     .controller('DoctorsCtrl', ["$scope", "$http", function($scope, $http) {
 
 
-        $http.get('/applist').then(function(response){
+        $http.get('/doctors').then(function(response){
 
             $scope.values = response.data;
         });
