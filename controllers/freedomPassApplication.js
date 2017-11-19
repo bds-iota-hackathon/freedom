@@ -44,7 +44,6 @@ exports.freedomPassApplicationPost = function (req, res) {
         DoctorsPhoneNumber: req.body.pnod,
         DoctorsPostalCode: req.body.pcod,
         ApplicantsPostalCode: req.body.apc,
-        CertificatesIssued: String
     });
     // var freedomPassApplication = new model.FreedomPassApplication({
     //     DoctorID: req.body.did,
@@ -62,7 +61,6 @@ exports.freedomPassApplicationPost = function (req, res) {
             DoctorsPhoneNumber: req.body.pnod,
             DoctorsPostalCode: req.body.pcod,
             ApplicantsPostalCode: req.body.apc,
-            CertificatesIssued: String
         });
     }).then((freedomPassApplication) => {
         freedomPassApplication.save(function (err) {

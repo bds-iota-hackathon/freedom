@@ -17,6 +17,8 @@ var freedomPassApplicationController = require('./controllers/freedomPassApplica
 
 var listController = require('./controllers/list');
 
+var doctorsController = require('./controllers/doctors');
+
 var app = express();
 
 
@@ -41,6 +43,8 @@ app.get('/', function(req, res) {
 });
 
 app.get('/applist', listController.listPost);
+
+app.get('/doctors', doctorsController.doctorsPost);
 
 
 app.get('*', function(req, res) {
