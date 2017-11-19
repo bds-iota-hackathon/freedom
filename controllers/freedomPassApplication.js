@@ -3,9 +3,10 @@
  */
 var mongoose = require('mongoose');
 var model = require('../models/model');
+let api = require('../app/api/iota')
 
 
-exports.freedomPassApplicationPost = function(req, res) {
+exports.freedomPassApplicationPost = function (req, res) {
 // //   req.assert('name', 'Name cannot be blank').notEmpty();
 // //   req.assert('email', 'Email is not valid').isEmail();
 // //   req.assert('email', 'Email cannot be blank').notEmpty();
@@ -37,20 +38,45 @@ exports.freedomPassApplicationPost = function(req, res) {
 //         }
 //     });
 
-    var freedomPassApplication = new model.FreedomPassApplication({
-        DoctorID : req.body.did,
-        NationalInsuranceNumber: req.body.nin
+    // var freedomPassApplication = new model.FreedomPassApplication({
+    //     DoctorID: req.body.did,
+    //     NationalInsuranceNumber: req.body.nin
+    // });
+
+
+    api.commitDoctorPatientTransaction
+    (req.body.did, req.body.nin).then((result) => {
+        console.log(result);
+    }).then(() => {
+        return new model.FreedomPassApplication({
+            DoctorID: req.body.did,
+            NationalInsuranceNumber: req.body.nin
+        });
+    }).then((freedomPassApplication) => {
+        freedomPassApplication.save(function (err) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('Freeeeeee');
+            }
+        });
+
+        res.send({msg: 'Thank you! Your Freedom Pass Application has been submitted. ' + req.body.did + ' ' + req.body.nin});
+
+        console.log('Freedom Pass Application has been submitted');
     });
 
-    freedomPassApplication.save(function (err) {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log('Freeeeeee');
-        }
-    });
 
-    res.send({ msg: 'Thank you! Your Freedom Pass Application has been submitted. '+ req.body.did + ' ' + req.body.nin});
-
-    console.log('Freedom Pass Application has been submitted');
+    // freedomPassApplication.save(function (err) {
+    //     if (err) {
+    //         console.log(err);
+    //     } else {
+    //         console.log('Freeeeeee');
+    //     }
+    // });
+    //
+    // res.send({ msg: 'Thank you! Your Freedom Pass Application has been submitted. '+ req.body.did + ' ' + req.body.nin});
+    //
+    // console.log('Freedom Pass Application has been submitted');
 };
+
